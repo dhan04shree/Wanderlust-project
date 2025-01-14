@@ -37,21 +37,13 @@ module.exports.createListing = async(req,res)=>{
     // if(!req.body.listing){
     //     throw new ExpressError(400,"Send valid data for listing");
     // }
-    const response = await geocoder.geocode(req.body.listing.location);
     let url = req.file.path;
     let filename = req.file.filename;
     console.log(req.body.listing);
     const newlisting = new Listing(req.body.listing);
     newlisting.owner = req.user._id;
-    
     newlisting.image = {url,filename};
-    newlisting.geometry.latitude = response[0].latitude;
-    newlisting.geometry.longitude = response[0].longitude;
-    console.log(newlisting.geometry.longitude);
-    // console.log( newlisting.geometry);
-
-    
-    
+    console.log(newlisting);
     await newlisting.save();
     // if(!newlisting.description){
     //     throw new ExpressError(400,"Description is missing");
