@@ -50,8 +50,8 @@ module.exports.createListing = async(req,res)=>{
     // }
     // if(!newlisting.title){
     //     throw new ExpressError(400,"Title is missing");
-    // }
-    // itna likhne ke bjay hm joi package use krenge.
+    // } etc etc
+    // itna likhne ke alava hm joi package use krenge.
     req.flash("success","New listing created!");
     res.redirect("/listings");
 }
