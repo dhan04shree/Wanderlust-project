@@ -1,0 +1,135 @@
+<% layout("/layouts/boilerplate")%>
+<style>
+  .slide-icons{
+    display: flex;
+  }
+</style>
+<div id="filters">
+  <div>
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+           <div class="slide-icons">
+            <a class="filter" href="/listings/">
+              <div><i class="fa-solid fa-house"></i></div>
+              <p>All</p>
+            </a>
+            <a class="filter" href="/listings/category/Rooms">
+              <div><i class="fa-solid fa-bed"></i></div>
+              <p>Rooms</p>
+            </a>
+            <a class="filter" href="/listings/category/IconicCities">
+              <div><i class="fa-solid fa-mountain-city"></i></div>
+              <p>Iconic Cities</p> 
+            </a>
+            <a class="filter" href="/listings/category/NationalParks">
+              <div><i class="fa-solid fa-tree"></i></div>
+              <p>National-Parks</p>
+            </a>
+            <a class="filter" href="/listings/category/Mountain">
+              <div><i class="fa-solid fa-mountain-sun"></i></div>
+              <p>Mountain</p>
+            </a>
+            <a class="filter" href="/listings/category/AmazingPools">
+              <div><i class="fa-solid fa-person-swimming"></i></div>
+              <p>Amazing Pools</p>
+            </a>
+            
+            <a class="filter" href="/listings/category/Beach">
+              <div><i class="fa-solid fa-umbrella-beach"></i></div>
+              <p>Beach</p>
+            </a>
+            <a class="filter" href="/listings/category/Camping">
+              <div><i class="fa-solid fa-campground"></i></div>
+              <p>Camping</p>
+            </a>
+            <i class="fa-solid fa-circle-chevron-right"  data-bs-target="#carouselExample" data-bs-slide="next"></i> 
+           </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="slide-icons">
+
+            <i class="fa-solid fa-circle-chevron-left" data-bs-target="#carouselExample" data-bs-slide="prev"></i>
+            <a class="filter" href="/listings/category/Arctic">
+              <div><i class="fa-regular fa-snowflake"></i></div>
+              <p>Arctic</p>
+            </a>
+            <a class="filter" href="/listings/category/Towers">
+              <div><i class="fa-solid fa-tower-observation"></i></div>
+              <p>Towers</p>
+            </a>
+            <a class="filter" href="/listings/category/Lakes">
+              <div><i class="fa-solid fa-water"></i></div>
+              <p>Lakes</p>
+            </a>
+            <a class="filter" href="/listings/category/Boats">
+              <div><i class="fa-solid fa-sailboat"></i></div>
+              <p>Boats</p>
+            </a>
+            <a class="filter" href="/listings/category/Castles">
+              <div><i class="fa-brands fa-fort-awesome"></i></div>
+              <p>Castles</p>
+              <a class="filter" href="/listings/category/Farms">
+                <div><i class="fa-solid fa-cow"></i></div>
+                <p>Farms</p>
+              </a> 
+              <a class="filter" href="/listings/category/TreeHouse">
+                <div><i class="fa-solid fa-warehouse"></i></div>
+                <p>TreeHouse</p>
+              </a>
+              <a class="filter" href="/listings/category/HouseBoats">
+                <div><i class="fa-solid fa-ship"></i></div>
+                <p>HouseBoats</p>
+              </a>
+              <a class="filter" href="/listings/category/ChefKitchens">
+                <div><i class="fa-solid fa-hotel"></i></div>
+                <p>Chef's Kitchens</p>
+              </a>
+            
+            </div>
+          </div>
+          
+          </div>
+      </div>
+      
+    </div>
+      <div class="form-check form-check-reverse form-switch tax-toggle">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+       
+      </div>
+  </div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+      <%  for(let listing of allListings){ %>
+        <a href="/listings/<%=listing._id%>" class="listing-link">
+          <div class="card col listing-card">
+              <img src="<%=listing.image.url%>" id="card-img-top" alt="listing_img" style="height:20rem">
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+              <p class="card-text">
+                <b><%=listing.title %></b> <br>
+                &#8377; <%=listing.price.toLocaleString("en-IN")%> /night
+                <i class="tax-info"> &nbsp; &nbsp;+18% GST </i>
+              </p>
+            </div>
+          </div>
+        </a>
+      <%  } %>
+</div>
+
+<script>
+  let taxSwitch = document.getElementById("flexSwitchCheckDefault");
+  taxSwitch.addEventListener("click",()=>{
+    let taxInfo = document.getElementsByClassName("tax-info");
+    for(info of taxInfo){
+      if(info.style.display != "inline"){
+        info.style.display = "inline";
+      }
+      else{
+        info.style.display = "none";
+      }
+    }
+  })
+</script>
