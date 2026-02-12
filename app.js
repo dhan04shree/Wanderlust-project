@@ -13,9 +13,12 @@ const methodOverride = require("method-override");
 
 app.use(express.static(path.join(__dirname,"/public/css")));
 app.use(express.static(path.join(__dirname,"/public/js")));
+app.use(express.static(path.join(__dirname,"/public/icons")));
 
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
+
+const googleRoute = require("./routes/google.js");
 
 //ejs-mate
 const ejsMate = require("ejs-mate");
@@ -100,6 +103,7 @@ app.use((req,res,next)=>{
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
+app.use("/auth/google", googleRoute);
 
 app.all("*",(req,res,next)=>{
     
